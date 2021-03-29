@@ -1,0 +1,94 @@
+<div class="cardInfo">
+    <div class="cardHeader">
+        <div class="columnProps">
+            <div *ngIf="!this.editName;else editNameOn">
+                <div>
+                    <p>{{cards[pokemon].name}}</p>
+                    <button (click)="editarName()" class="editButton">Editar</button>
+                </div>
+            </div>
+            <ng-template #editNameOn>
+                <form (ngSubmit)="enviarNuevoName()">
+                    <input type="text" name="name" #name="ngModel" [(ngModel)]="editedName">
+                </form>
+            </ng-template>
+        </div>
+        <div class="columnProps">
+            <div *ngIf="!this.editType;else editTypeOn">
+                <p>{{cards[pokemon].type}}</p>
+                <button (click)="editarType()" class="editButton">Editar</button>
+            </div>
+            <ng-template #editTypeOn>
+                <form (ngSubmit)="enviarNuevoType()">
+                    <input type="text" name="type" #name="ngModel" [(ngModel)]="editedType">
+                </form>
+            </ng-template>
+        </div>
+        <div class="columnProps">
+            <div *ngIf="!this.editLvl;else editLvlOn">
+                <p>Lv{{cards[pokemon].lvl}}</p>
+                <button (click)="editarLvl()" class="editButton">Editar</button>
+            </div>
+            <ng-template #editLvlOn>
+                <form (ngSubmit)="enviarNuevoLvl()">
+                    <input type="text" name="lvl" #lvl="ngModel" [(ngModel)]="editedLvl">
+                </form>
+            </ng-template>
+        </div>
+    </div>
+    <div class="imageContainer">
+        <div *ngIf="!this.editImage;else editImageOn">
+            <img src="{{cards[pokemon].image}}" alt="">
+        </div>
+        <button (click)="editarImage()" class="editButton">Editar(Insertar URL de imagen)</button>
+        <ng-template #editImageOn>
+            <form (ngSubmit)="enviarNuevoImage()">
+                <input type="text" name="name" #name="ngModel" [(ngModel)]="editedImage">
+            </form>
+        </ng-template>
+    </div>
+    <div class="imageContainer">
+        <div *ngIf="!this.editAbilities;else editAbilitiesOn" class="abilitiesContainer">
+            <h2>Ataques</h2>
+            <div class="rowContainer">
+                <p>{{cards[pokemon].abilities[0]}}</p>
+                <p>{{cards[pokemon].abilities[1]}}</p>
+            </div>
+            <div class="rowContainer">
+                <p>{{cards[pokemon].abilities[2]}}</p>
+                <p>{{cards[pokemon].abilities[3]}}</p>
+            </div>
+        </div>
+        <ng-template #editAbilitiesOn>
+            <form (ngSubmit)="enviarNuevoAbilities()">
+                <input type="text" name="abilities" #name="ngModel" [(ngModel)]="editAbilities[0]">
+            </form>
+        </ng-template>
+    </div>
+    <div class="evolutions">
+        <div class="evoContainer">
+            <h2>Preevolucion</h2>
+            <p>{{cards[pokemon].preevo}}</p>
+            <div *ngIf="!this.editPreevo;else editPreevoOn">
+                <button (click)="editarPreevo()" class="editButton">Editar</button>
+            </div>
+            <ng-template #editPreevoOn>
+                <form (ngSubmit)="enviarNuevoPreevo()">
+                    <input type="text" name="preevo" #name="ngModel" [(ngModel)]="editedPreevo">
+                </form>
+            </ng-template>
+        </div>
+        <div class="evoContainer">
+            <h2>Evolucion</h2>
+            <p>{{cards[pokemon].evo}}</p>
+            <div *ngIf="!this.editEvo;else editEvoOn">
+                <button (click)="editarEvo()" class="editButton">Editar</button>
+            </div>
+            <ng-template #editEvoOn>
+                <form (ngSubmit)="enviarNuevoEvo()">
+                    <input type="text" name="evo" #name="ngModel" [(ngModel)]="editedEvo">
+                </form>
+            </ng-template>
+        </div>
+    </div>
+</div>

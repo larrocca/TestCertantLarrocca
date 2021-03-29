@@ -1,0 +1,49 @@
+<div class="mainContainer">
+    <div class="header">
+        <h1>Pokedex-Lite</h1>
+    </div>
+    <div *ngIf="!this.logeado; else logedTrue" class="goToLog">
+        <h2>Debe logearse para ingresar aqui</h2>
+        <button (click)="redirect()">Ir a logearse</button>
+    </div>
+    <ng-template #logedTrue>
+        <div [class.hide]="hide" class="container">
+            <div class="card" *ngFor="let pokemon of cards; let i = index">
+                <div class="nameContainer">
+                    <a [routerLink]="['/info',i]">
+                        <p>{{pokemon.name}}</p>
+                    </a>
+                </div>
+                <div class="nameContainer">
+                    <p>{{pokemon.type}}</p>
+                </div>
+                <div class="nameContainer">
+                    <p>Lv{{pokemon.lvl}}</p>
+                </div>
+
+            </div>
+        </div>
+        <div *ngIf="!this.createb;else createCard" class="new">
+            <button (click)="create()" class="button">Nuevo</button>
+        </div>
+        <ng-template #createCard class="newContainer">
+            <form #userForm="ngForm" (ngSubmit)="crearNuevo()" [class.hide]="!hide" class="createContainer">
+                <div class="createBody">
+                    <p>Nombre</p>
+                    <input type="text" name="name" #name="ngModel" [(ngModel)]="newPokemon.name">
+                    <p>Imagen(URL)</p>
+                    <input type="text" name="image" #image="ngModel" [(ngModel)]="newPokemon.image">
+                    <p>Evolucion</p>
+                    <input type="text" name="evo" #evo="ngModel" [(ngModel)]="newPokemon.evo">
+                    <p>Tipo</p>
+                    <input type="text" name="type" #type="ngModel" [(ngModel)]="newPokemon.type">
+                    <p>Preevolucion</p>
+                    <input type="text" name="preevo" #preevo="ngModel" [(ngModel)]="newPokemon.preevo">
+                    <p>Lvl</p>
+                    <input type="text" name="lvl" #lvl="ngModel" [(ngModel)]="newPokemon.lvl">
+                    <button class="button">Crear</button>
+                </div>
+            </form>
+        </ng-template>
+    </ng-template>
+</div>

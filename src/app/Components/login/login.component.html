@@ -1,0 +1,14 @@
+<div>
+    <div class="header">
+        <h2>Pokedex-Lite</h2>
+    </div>
+    <form #userForm="ngForm" (ngSubmit)="compare()">
+        <div class="body">
+            <span>Ingrese su usuario:</span>
+            <input class="inputText" type="text" name="user" #user="ngModel" [(ngModel)]="tempUsuario.tempUser">
+            <span>Ingrese se contraseña:</span>
+            <input class="inputText" type="text" name="pass" #pass="ngModel" [(ngModel)]="tempUsuario.tempPass">
+            <button class="button">Iniciar cesion</button>
+        </div>
+    </form>
+</div>
